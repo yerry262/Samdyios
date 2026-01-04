@@ -130,6 +130,18 @@ class FileSystemManager: ObservableObject {
         return createDirectoryIfNeeded(at: fullPath)
     }
     
+    func createDirectoryWithParents(name: String, at path: String) -> Bool {
+        let resolvedPath = resolvePath(path)
+        let fullPath = "\(resolvedPath)/\(name)"
+        
+        do {
+            try fileManager.createDirectory(atPath: fullPath, withIntermediateDirectories: true, attributes: nil)
+            return true
+        } catch {
+            return false
+        }
+    }
+    
     func directoryExists(at path: String) -> Bool {
         let resolvedPath = resolvePath(path)
         var isDirectory: ObjCBool = false

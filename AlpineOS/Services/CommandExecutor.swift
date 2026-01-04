@@ -108,16 +108,37 @@ class CommandExecutor: ObservableObject {
     }
     
     private func handleMkdir(args: [String], completion: @escaping (Result<String, Error>) -> Void) {
-        guard let name = args.first else {
+        guard !args.isEmpty else {
             completion(.failure(CommandError.invalidArguments))
             return
         }
         
-        if fileSystemManager.createDirectory(name: name, at: currentDirectory) {
-            completion(.success(""))
-        } else {
-            completion(.failure(CommandError.executionFailed("mkdir: cannot create directory '\(name)'")))
+        // Check for -p flag
+        let hasParentFlag = args.contains("-p")
+        let paths = args.filter { $0 != "-p" }
+        
+        guard !paths.isEmpty else {
+            completion(.failure(CommandError.invalidArguments))
+            return
         }
+        
+        for name in paths {
+            if hasParentFlag {
+                // Create with parent directories
+                if !fileSystemManager.createDirectoryWithParents(name: name, at: currentDirectory) {
+                    completion(.failure(CommandError.executionFailed("mkdir: cannot create directory '\(name)'")))
+                    return
+                }
+            } else {
+                // Create single directory
+                if !fileSystemManager.createDirectory(name: name, at: currentDirectory) {
+                    completion(.failure(CommandError.executionFailed("mkdir: cannot create directory '\(name)'")))
+                    return
+                }
+            }
+        }
+        
+        completion(.success(""))
     }
     
     private func handleTouch(args: [String], completion: @escaping (Result<String, Error>) -> Void) {

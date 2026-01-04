@@ -1,5 +1,8 @@
 # AlpineOS - Alpine Linux on iOS
 
+> **Repository**: [yerry262/Samdyios](https://github.com/yerry262/Samdyios)  
+> **Project Name**: AlpineOS (Sandboxed Alpine OS for iOS)
+
 <div align="center">
 
 ![iOS](https://img.shields.io/badge/iOS-15.0+-blue.svg)
