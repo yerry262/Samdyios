@@ -1,0 +1,72 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+vendor/
+venv/
+env/
+.env
+
+# Build outputs
+dist/
+build/
+out/
+target/
+*.pyc
+__pycache__/
+*.class
+*.o
+*.so
+
+# Package files
+*.tar.gz
+*.zip
+*.7z
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Coverage reports
+coverage/
+*.cover
+.coverage
+htmlcov/
+
+# Cache
+.cache/
+.pytest_cache/
+.mypy_cache/
